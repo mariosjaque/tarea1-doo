@@ -42,7 +42,14 @@ public class Expendedor {
             }
         }
 
-        if(out==null){monVu.addMoneda(m);}
+        if(out==null){
+            monVu.addMoneda(m);
+            try {
+                throw new PagoInsuficienteExcepcion("No tienes suficiente dinero para comprar este producto.");
+            } catch (PagoInsuficienteExcepcion e) {
+                throw new RuntimeException(e);
+            }
+        }
         return out;
     }
 
