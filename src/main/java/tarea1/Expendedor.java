@@ -22,28 +22,36 @@ public class Expendedor {
         pB=precioBebidas;
     }
 
-    public Bebida comprarBebida(Moneda m, int sabor){
+    public Producto comprarBebida(Moneda m, int sabor){
         if(m==null){return null;}
-        Bebida out = null;
-        if(m.getValor()>=pB){
-            if(sabor==COCA){
-                out = coca.getBebida();
+
+        Producto out = null;
+        if(sabor == 1 || sabor ==2 || sabor == 3 || sabor ==4){
+            if(m.getValor()>=pB){
+                if(sabor==COCA){
+                    out = coca.getBebida();
+                }
+                if(sabor==SPRITE){
+                    out = sprite.getBebida();
+                }
             }
-            if(sabor==SPRITE){
-                out = sprite.getBebida();
+            else{return out;}
+            if(m.getValor()>pB && out!=null){
+                int vu=m.getValor()-pB;
+                vu/=100;
+                for(int i=0;i<vu;i++) {
+                    Moneda mon = new Moneda100();
+                    monVu.addMoneda(mon);
+                }
             }
+
+            if(out==null){monVu.addMoneda(m);}
+            return out;
         }
-        if(m.getValor()>pB && out!=null){
-            int vu=m.getValor()-pB;
-            vu/=100;
-            for(int i=0;i<vu;i++) {
-                Moneda mon = new Moneda100();
-                monVu.addMoneda(mon);
-            }
+        else{
+            return out;
         }
 
-        if(out==null){monVu.addMoneda(m);}
-        return out;
     }
 
     public Moneda getVuelto(){
