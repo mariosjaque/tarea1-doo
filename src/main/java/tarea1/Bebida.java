@@ -4,7 +4,9 @@ abstract class Bebida {
 
     public Bebida(int s){ serie = s; }
 
-    public int getSerie(){ return serie; }
+    public int getSerie(){
+        return serie;
+    }
 
     public abstract String beber();
 
