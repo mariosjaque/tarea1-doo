@@ -1,7 +1,7 @@
 package tarea1;
 
 
-public class PagoInsuficienteExcepcion extends java.lang.Exception {
+public class PagoInsuficienteExcepcion extends Exception {
     public PagoInsuficienteExcepcion(String mensaje) {
         super(mensaje);
 
