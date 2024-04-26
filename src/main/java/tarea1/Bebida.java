@@ -1,3 +1,4 @@
+package tarea1;
 abstract class Bebida {
     private int serie;
 

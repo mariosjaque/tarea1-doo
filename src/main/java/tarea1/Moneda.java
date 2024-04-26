@@ -1,3 +1,4 @@
+package tarea1;
 abstract class Moneda {
     public Moneda(){}
     public Moneda getSerie() {

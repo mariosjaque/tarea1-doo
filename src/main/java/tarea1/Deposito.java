@@ -1,3 +1,4 @@
+package tarea1;
 import java.util.ArrayList;
 public class Deposito {
     private ArrayList<Bebida> al;
