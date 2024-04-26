@@ -47,7 +47,7 @@ public class Expendedor {
             try {
                 throw new PagoInsuficienteExcepcion("No tienes suficiente dinero para comprar este producto.");
             } catch (PagoInsuficienteExcepcion e) {
-                throw new RuntimeException(e);
+                System.out.println("No tienes suficiente dinero para comprar este producto.");
             }
         }
         return out;
