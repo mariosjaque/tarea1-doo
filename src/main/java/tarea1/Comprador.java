@@ -18,6 +18,7 @@ class Comprador {
 
     public int cuantoVuelto(){
         return vuelto;
+
     }
     public String queBebiste(){
         return sonido;
