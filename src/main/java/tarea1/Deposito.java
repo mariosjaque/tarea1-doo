@@ -12,7 +12,7 @@ public class Deposito {
     }
 
     public Bebida getBebida(){
-        if(al.size()==0){
+        if(al.isEmpty()){
             return null;
         } else {
             return al.remove(0);
