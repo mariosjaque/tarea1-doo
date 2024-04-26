@@ -1,36 +1,36 @@
 package tarea1;
 public class Expendedor {
-    private Deposito coca;
-    private Deposito sprite;
-    private DepositoM monVu;
+    private Deposito<Producto> coca;
+    private Deposito<Producto> sprite;
+    private Deposito<Moneda> monVu;
     private int pB;
     public static final int COCA=1;
     public static final int SPRITE=2;
 
     public Expendedor(int numBebidas, int precioBebidas) {
-        coca = new Deposito();
+        coca = new Deposito<Producto>();
         for(int i=100;i<numBebidas+100;i++){
             Bebida beo = new CocaCola(i);
-            coca.addBebida(beo);
+            coca.add(beo);
         }
-        sprite = new Deposito();
+        sprite = new Deposito<Producto>();
         for(int i=200;i<numBebidas+200;i++){
             Bebida beo = new Sprite(i);
-            sprite.addBebida(beo);
+            sprite.add(beo);
         }
-        monVu = new DepositoM();
+        monVu = new Deposito<Moneda>();
         pB=precioBebidas;
     }
 
-    public Bebida comprarBebida(Moneda m, int sabor){
+    public Producto comprarBebida(Moneda m, int sabor){
         if(m==null){return null;}
-        Bebida out = null;
+        Producto out = null;
         if(m.getValor()>=pB){
             if(sabor==COCA){
-                out = coca.getBebida();
+                out = coca.get();
             }
             if(sabor==SPRITE){
-                out = sprite.getBebida();
+                out = sprite.get();
             }
         }
         if(m.getValor()>pB && out!=null){
@@ -38,15 +38,15 @@ public class Expendedor {
             vu/=100;
             for(int i=0;i<vu;i++) {
                 Moneda mon = new Moneda100();
-                monVu.addMoneda(mon);
+                monVu.add(mon);
             }
         }
 
-        if(out==null){monVu.addMoneda(m);}
+        if(out==null){monVu.add(m);}
         return out;
     }
 
     public Moneda getVuelto(){
-        return monVu.getMoneda();
+        return monVu.get();
     }
 }
