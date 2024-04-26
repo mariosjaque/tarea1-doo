@@ -6,10 +6,12 @@ public class DepositoM {
     private ArrayList<Moneda> al;
 
     public DepositoM(){
+
         al = new ArrayList<Moneda>();
     }
 
     public void addMoneda(Moneda mon){
+
         al.add(mon);
     }
 

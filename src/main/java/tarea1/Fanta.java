@@ -4,7 +4,7 @@ public class Fanta extends Bebida {
     public Fanta(int serie) {
         super(serie);
     }
-/***/
+/**Aqui hice un override para el sabor fanta*/
     @Override
     public String beber() {
         return "fanta";

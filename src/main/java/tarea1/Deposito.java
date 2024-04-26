@@ -4,10 +4,12 @@ public class Deposito {
     private ArrayList<Bebida> al;
 
     public Deposito(){
+
         al = new ArrayList<Bebida>();
     }
 
     public void addBebida(Bebida beb){
+
         al.add(beb);
     }
 
