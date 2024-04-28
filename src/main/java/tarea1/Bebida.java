@@ -9,6 +9,4 @@ abstract class Bebida extends Producto {
         return serie;
     }
 
-    public abstract String sonido();
-
 }
