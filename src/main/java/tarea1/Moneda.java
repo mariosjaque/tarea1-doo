@@ -1,8 +1,8 @@
 package tarea1;
-public abstract class Moneda {
+abstract class Moneda {
     public Moneda(){}
-    public Moneda getSerie() {
-        return this;
+    public String getSerie() {
+        return this.toString();
     }
     public abstract int getValor();
 }
