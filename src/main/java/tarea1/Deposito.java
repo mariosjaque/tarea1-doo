@@ -1,21 +1,21 @@
 package tarea1;
 import java.util.ArrayList;
-public class Deposito {
-    private ArrayList<Bebida> al;
+public class Deposito<T> {
+    private ArrayList<T> al;
 
     public Deposito(){
-        al = new ArrayList<Bebida>();
+        al = new ArrayList<T>();
     }
 
-    public void addBebida(Bebida beb){
+    public void add(T beb){
         al.add(beb);
     }
 
-    public Bebida getBebida(){
+    public T get(){
         if(al.isEmpty()){
             return null;
         } else {
-            return al.remove(0);
+            return al.removeFirst();
         }
     }
 }
