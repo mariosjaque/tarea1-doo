@@ -63,7 +63,7 @@ public class Expendedor extends Exception {
         }
 
         if(out==null){
-            monVu.addMoneda(m);
+            monVu.add(m);
 
         }
         return out;

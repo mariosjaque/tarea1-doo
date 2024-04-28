@@ -3,7 +3,7 @@ public class Comprador extends Exception{
     private String sonido;
     private int vuelto;
     public Comprador(Moneda m, int cualProducto, Expendedor exp) throws PagoInsuficienteExcepcion {
-        Bebida queCompre= null;
+        Producto queCompre = null;
         try {
             queCompre = exp.comprarBebida(m, cualProducto);
         } catch (PagoInsuficienteExcepcion e) {
