@@ -1,4 +1,8 @@
 package tarea1;
+
+/**
+ * Crea un expendedor y define el comportamiento logico de este, incluyendo las excepciones
+ */
 public class Expendedor extends Exception {
     private Deposito<Producto> coca;
     private Deposito<Producto> sprite;
@@ -7,6 +11,11 @@ public class Expendedor extends Exception {
     private Deposito<Producto> snickers;
     private Deposito<Moneda> monVu;
 
+    /**
+     * Verifica el stock de cada producto
+     * @param numProductos cantidad total de productos
+     * @throws NoHayProductoException alerta al usuario de que el producto que desea comprar ya no tiene stock
+     */
     public Expendedor(int numProductos) throws NoHayProductoException {
         if(numProductos<=0){
             throw new NoHayProductoException("No hay productos");
@@ -43,6 +52,14 @@ public class Expendedor extends Exception {
         monVu = new Deposito<Moneda>();
     }
 
+    /**
+     * Realiza la operacion logica de comprar un producto
+     * @param m representa la cantidad de dinero
+     * @param prodnum la cantidad de productos a comprar
+     * @throws NoHayProductoException es una excepcion que permite a la maquina detectar cuando el stock de producto = 0
+     * @throws PagoInsuficienteExcepcion una excepcion que permite saber cuando el dinero ingresado es menos al precio del producto
+     * @throws PagoIncorrectoException cuando no se pudo concretar la transaccion.
+     */
     public Producto comprarProducto(Moneda m, int prodnum) throws PagoInsuficienteExcepcion,NoHayProductoException,PagoIncorrectoException {
         if(m==null){throw new PagoIncorrectoException("Moneda invalida");}
         int pB=0;
@@ -59,6 +76,10 @@ public class Expendedor extends Exception {
         if(m.getValor()<pB){
             throw new PagoInsuficienteExcepcion("No se pudo completar la compra por pago insuficiente.");
         } else {
+            /**
+             * Se utililza un switch case para que el programa identifique el producto y sepa
+             * que tipo y sabor debe retitrar del deposito.
+             */
             switch (producto) {
                 case COCA:
                     out = coca.get();
@@ -95,7 +116,10 @@ public class Expendedor extends Exception {
 
     }
 
-
+    /**
+     * este metodo entrega el vuelto
+     * @return devuelve el vuelto en monedas
+     */
     public Moneda getVuelto(){
         return monVu.get();
     }
