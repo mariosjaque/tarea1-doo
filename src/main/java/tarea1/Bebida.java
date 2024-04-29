@@ -5,8 +5,4 @@ abstract class Bebida extends Producto {
         serie = s;
     }
 
-    public int getSerie(){
-        return serie;
-    }
-
 }

@@ -29,6 +29,7 @@ public class Main {
             System.out.println((e.getMessage()));
             System.exit(1);
         }
+        Comprador comp = new Comprador(m,1,exp);
 
 
     }
