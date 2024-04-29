@@ -1,5 +1,5 @@
 package tarea1;
-abstract class Moneda implements Comparable<Moneda>{
+public abstract class Moneda implements Comparable<Moneda>{
     public Moneda(){}
     public String getSerie() {
         return this.toString();

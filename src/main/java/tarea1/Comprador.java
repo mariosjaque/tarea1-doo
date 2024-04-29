@@ -1,9 +1,9 @@
 package tarea1;
-public class Comprador{
+public class Comprador extends Exception{
     private String sonido;
     private int vuelto;
-    public Comprador(Moneda m, int cualProducto, Expendedor exp){
-        Producto queCompre = null;
+    public Comprador(Moneda m, int cualProducto, Expendedor exp) throws NoHayProductoException,PagoIncorrectoException,PagoInsuficienteExcepcion{
+        Producto queCompre = exp.comprarProducto(m, cualProducto);
         if(queCompre!=null){sonido = queCompre.Sonido();}
         else{sonido=null;}
         while(true){
