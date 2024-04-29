@@ -4,8 +4,7 @@ package tarea1;
  *  La clase comprador emula y ejecuta el proceso completo de un comprador
  *  haciendole saber al programa cuanto dinero tiene, que producto quiere y de que expendedor quiere sacarlo
  */
-public class Comprador{
-
+public class Comprador extends Exception{
     private String sonido;
     private int vuelto;
 
@@ -15,8 +14,8 @@ public class Comprador{
      * @param cualProducto permite seleccionar de un enum que producto retirar
      * @param exp le asigna el nombre exp a Expendedor
      */
-    public Comprador(Moneda m, int cualProducto, Expendedor exp){
-        Producto queCompre = null;
+    public Comprador(Moneda m, int cualProducto, Expendedor exp) throws NoHayProductoException,PagoIncorrectoException,PagoInsuficienteExcepcion{
+        Producto queCompre = exp.comprarProducto(m, cualProducto);
         /**
          * Cada vez que la transaccion es aprobada emite un sonido
          */

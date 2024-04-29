@@ -14,6 +14,7 @@ public abstract class Producto {
      * que ocupa el producto
      */
     public int getSerie(int x){
+    public int getSerie(){
         return serie;
     }
     public abstract String Sonido();
