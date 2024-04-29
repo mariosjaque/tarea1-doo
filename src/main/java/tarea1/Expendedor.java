@@ -7,85 +7,93 @@ public class Expendedor extends Exception {
     private Deposito<Producto> snickers;
     private Deposito<Moneda> monVu;
 
-    private int pB;
-    public static final int COCA=1;
-    public static final int SPRITE=2;
-    public static final int FANTA=3;
-    public static final int SUPER8 = 4;
-    public static final int SNICKERS = 5;
-
-    public Expendedor(int numBebidas, int precioBebidas) throws NoHayProductoException{
-        if(numBebidas<=0){
+    public Expendedor(int numProductos) throws NoHayProductoException {
+        if(numProductos<=0){
             throw new NoHayProductoException("No hay productos");
         }
         coca = new Deposito<Producto>();
-        for(int i=100;i<numBebidas+100;i++){
+        for(int i=100;i<numProductos+100;i++){
             Producto beo = new CocaCola(i);
             coca.add(beo);
         }
         sprite = new Deposito<Producto>();
-        sprite = new Deposito();
-
-        for(int i=200;i<numBebidas+200;i++){
+        for(int i=200;i<numProductos+200;i++){
             Producto beo = new Sprite(i);
             sprite.add(beo);
         }
 
         fanta = new Deposito<Producto>();
-
-        for(int i=200;i<numBebidas+200;i++){
+        for(int i=300;i<numProductos+300;i++){
             Producto beo = new Fanta(i);
             fanta.add(beo);
         }
-        monVu = new Deposito<Moneda>();
 
-        pB=precioBebidas;
+        super8 = new Deposito<Producto>();
+        for(int i=400;i<numProductos+400;i++){
+            Producto beo = new Super8(i);
+            super8.add(beo);
+        }
+
+        snickers = new Deposito<Producto>();
+        for(int i=500;i<numProductos+500;i++){
+            Producto beo = new Snickers(i);
+            snickers.add(beo);
+        }
+
+        monVu = new Deposito<Moneda>();
     }
 
-    public Producto comprarBebida(Moneda m, int sabor) throws PagoInsuficienteExcepcion,NoHayProductoException,PagoIncorrectoException {
-        if(sabor == 1 || sabor == 2 || sabor ==3 || sabor == 4 || sabor ==5){
-            if(m==null){throw new PagoIncorrectoException("Moneda invalida");}
+    public Producto comprarProducto(Moneda m, int prodnum) throws PagoInsuficienteExcepcion,NoHayProductoException,PagoIncorrectoException {
+        if(m==null){throw new PagoIncorrectoException("Moneda invalida");}
+        int pB=0;
+        productos producto = null;
 
-            Producto out = null;
-            if(m.getValor()>=pB){
-                if(sabor==COCA){
+        if(prodnum >= 1 && prodnum <= 5){
+            producto = productos.values()[prodnum - 1];
+            pB = producto.valorProductos();
+        } else {
+            throw new NoHayProductoException("No se seleccionó un producto valido");
+        }
+
+        Producto out = null;
+        if(m.getValor()<pB){
+            throw new PagoInsuficienteExcepcion("No se pudo completar la compra por pago insuficiente.");
+        } else {
+            switch (producto) {
+                case COCA:
                     out = coca.get();
-                }
-                if(sabor==SPRITE){
+                    break;
+                case SPRITE:
                     out = sprite.get();
-                }
-                if(sabor==FANTA){
+                    break;
+                case FANTA:
                     out = fanta.get();
-                }
-                if(sabor==SUPER8){
-                    out = super8.get();
-                }
-                if(sabor==SNICKERS){
+                    break;
+                case SNICKERS:
                     out = snickers.get();
-                }
+                    break;
+                case SUPER8:
+                    out = super8.get();
+                    break;
             }
-            if(m.getValor()>pB && out!=null){
-                int vu=m.getValor()-pB;
-                vu/=100;
-                for(int i=0;i<vu;i++) {
-                    Moneda mon = new Moneda100();
-                    monVu.add(mon);
-                }
-            }
-            if(m.getValor()<pB && out!=null){
-                throw new PagoInsuficienteExcepcion("No se pudo completar la compra por pago insuficiente.");
-            }
+        }
 
-            if(out==null){
-                monVu.add(m);
-
+        if(m.getValor()>pB && out!=null){
+            int vu=m.getValor()-pB;
+            vu/=100;
+            for(int i=0;i<vu;i++) {
+                Moneda mon = new Moneda100();
+                monVu.add(mon);
             }
-            return out;
         }
-        else{
-            throw new NoHayProductoException("No se selecciono un producto valido");
+
+        if(out==null){
+            monVu.add(m);
+
         }
-        }
+        return out;
+
+    }
 
 
     public Moneda getVuelto(){

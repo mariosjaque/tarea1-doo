@@ -5,17 +5,17 @@ public class Main {
 
 
         try{
-            Expendedor exp = new Expendedor(1,300);
+            Expendedor exp = new Expendedor(1);
         } catch (NoHayProductoException e) {
             System.out.println((e.getMessage()));
             System.exit(1);
         }
-        Expendedor exp = new Expendedor(7,300);
+        Expendedor exp = new Expendedor(7);
 
         Moneda500 m = null;
 
         try{
-            exp.comprarBebida(m,5);
+            exp.comprarProducto(m,5);
         }
         catch (NoHayProductoException e){
             System.out.println((e.getMessage()));
