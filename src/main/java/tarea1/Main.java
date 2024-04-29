@@ -5,36 +5,47 @@ public class Main {
 
         int numProductos = 1;
         int prodnum = 5;
-        int cualProducto = 1;
-        try{
-            Expendedor exp = new Expendedor(numProductos);
-        } catch (NoHayProductoException e) {
-            System.out.println((e.getMessage()));
-            System.exit(1);
-        }
         Expendedor exp = new Expendedor(numProductos);
 
-        Moneda500 m = null;
+        Moneda m = new Moneda1000();
 
+        Comprador compa = null;
+        m = new Moneda1000();
         try {
-            exp.comprarProducto(m, prodnum);
-            Comprador compa = null;
-
-            try {
-                compa = new Comprador(m, 5, exp);
-            } catch (NoHayProductoException e) {
-                System.out.println((e.getMessage()));
-                System.exit(1);
-            } catch (PagoInsuficienteExcepcion e) {
-                System.out.println((e.getMessage()));
-                System.exit(1);
-            } catch (PagoIncorrectoException e) {
-                System.out.println((e.getMessage()));
-                System.exit(1);
-            }
-            Comprador comp = new Comprador(m, cualProducto, exp);
-            System.out.println(compa.queCompraste());
-            System.out.println(compa.cuantoVuelto());
-
+            compa = new Comprador(m, prodnum, exp);
+        } catch (NoHayProductoException e) {
+            System.out.println((e.getMessage()));
+        } catch (PagoInsuficienteExcepcion e) {
+            System.out.println((e.getMessage()));
+        } catch (PagoIncorrectoException e) {
+            System.out.println((e.getMessage()));
         }
+        System.out.println(compa.queCompraste());
+        System.out.println(compa.cuantoVuelto());
+
+        Comprador compa2 = null;
+        m = null;
+        try {
+            compa2 = new Comprador(m, prodnum, exp);
+        } catch (NoHayProductoException e) {
+            System.out.println((e.getMessage()));
+        } catch (PagoInsuficienteExcepcion e) {
+            System.out.println((e.getMessage()));
+        } catch (PagoIncorrectoException e) {
+            System.out.println((e.getMessage()));
+        }
+
+        Comprador compa3 = null;
+        prodnum=1;
+        m = new Moneda100();
+        try {
+            compa3 = new Comprador(m, prodnum, exp);
+        } catch (NoHayProductoException e) {
+            System.out.println((e.getMessage()));
+        } catch (PagoInsuficienteExcepcion e) {
+            System.out.println((e.getMessage()));
+        } catch (PagoIncorrectoException e) {
+            System.out.println((e.getMessage()));
+        }
+    }
 }

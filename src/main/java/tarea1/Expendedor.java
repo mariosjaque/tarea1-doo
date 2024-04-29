@@ -75,11 +75,6 @@ public class Expendedor extends Exception {
             }
         }
 
-        if(out==null){
-            monVu.add(m);
-            throw new NoHayProductoException("No hay stock de producto");
-        }
-
         if(m.getValor()>pB && out!=null){
             int vu=m.getValor()-pB;
             vu/=100;
@@ -88,8 +83,13 @@ public class Expendedor extends Exception {
                 monVu.add(mon);
             }
         }
+        if (out==null){
+            monVu.add(m);
+            throw new NoHayProductoException("No hay stock de producto");
+        }
 
         return out;
+
 
     }
 
