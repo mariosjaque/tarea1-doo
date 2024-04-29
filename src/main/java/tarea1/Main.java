@@ -3,19 +3,13 @@ package tarea1;
 public class Main {
     public static void main(String[] args) throws NoHayProductoException,PagoInsuficienteExcepcion,PagoIncorrectoException{
 
+        Expendedor exp = new Expendedor(2);
+
+        Moneda m = new Moneda1000();
+        Comprador compa = null;
 
         try{
-            Expendedor exp = new Expendedor(1);
-        } catch (NoHayProductoException e) {
-            System.out.println((e.getMessage()));
-            System.exit(1);
-        }
-        Expendedor exp = new Expendedor(7);
-
-        Moneda500 m = null;
-
-        try{
-            exp.comprarProducto(m,5);
+            compa = new Comprador(m, 5, exp);
         }
         catch (NoHayProductoException e){
             System.out.println((e.getMessage()));
@@ -29,7 +23,8 @@ public class Main {
             System.out.println((e.getMessage()));
             System.exit(1);
         }
-        Comprador comp = new Comprador(m,1,exp);
+        System.out.println(compa.queCompraste());
+        System.out.println(compa.cuantoVuelto());
 
 
     }
